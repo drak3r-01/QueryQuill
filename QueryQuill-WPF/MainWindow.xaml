@@ -1,0 +1,122 @@
+﻿<Window x:Class="QueryQuill_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="QueryQuill" Height="450" Width="800" FontSize="14" Background="#FFF7EFC7" MinWidth="574" MinHeight="382">
+
+    <Grid>
+
+        <DockPanel Margin="5,5,5,5" LastChildFill="True">
+
+            <Menu Margin="-5,-5,-5,5" DockPanel.Dock="Top">
+
+                <MenuItem Header="File">
+                    <MenuItem Header="Quit" Click="AppExit"/>
+                </MenuItem>
+
+                <MenuItem Header="Lang">
+                    <RadioButton x:Name="langOption_En" Content="English" GroupName="LangOptionsGroup"/>
+                    <RadioButton x:Name="langOption_Fr" Content="Français" GroupName="LangOptionsGroup"/>
+                </MenuItem>
+
+                <MenuItem Header="Help">
+                    <MenuItem Header="About"/>
+                </MenuItem>
+
+            </Menu>
+
+
+            <Grid DockPanel.Dock="Top">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <ComboBox x:Name="dorksList" Margin="5,0,10,0" Width="100" Grid.Column="0" SelectionChanged="DorksListSelectionChanged">
+
+                    <ComboBoxItem Content="site:" ToolTip="Limite la recherche à un site Web spécifique." />
+                    <ComboBoxItem Content="intitle:" ToolTip="Recherche des pages avec un mot spécifique dans le titre." />
+                    <ComboBoxItem Content="allintitle:" ToolTip="Recherche des pages avec tous les mots spécifiés dans le titre." />
+                    <ComboBoxItem Content="inurl:" ToolTip="Recherche des pages avec un mot spécifique dans l'URL." />
+                    <ComboBoxItem Content="allinurl:" ToolTip="Recherche des pages avec tous les mots spécifiés dans l'URL." />
+                    <ComboBoxItem Content="intext:" ToolTip="Recherche des pages contenant un mot spécifique dans le texte." />
+                    <ComboBoxItem Content="allintext:" ToolTip="Recherche des pages contenant tous les mots spécifiés dans le texte." />
+                    <ComboBoxItem Content="filetype:" ToolTip="Limite la recherche à des fichiers de type spécifique (par exemple, PDF, DOC)." />
+                    <ComboBoxItem Content="daterange:" ToolTip="Limite la recherche à une plage de dates spécifique." />
+                    <ComboBoxItem Content="before:" ToolTip="Limite la recherche aux pages publiées avant une date donnée." />
+                    <ComboBoxItem Content="after:" ToolTip="Limite la recherche aux pages publiées après une date donnée." />
+                    <ComboBoxItem Content="location:" ToolTip="Limite la recherche à une localisation géographique spécifique." />
+                    <ComboBoxItem Content="around:" ToolTip="Limite la recherche à une zone géographique spécifique (peut être utilisé avec location:)." />
+                    <ComboBoxItem Content="near:" ToolTip="Limite la recherche à des pages près d'une position géographique spécifique (peut être utilisé avec location:)." />
+                    <ComboBoxItem Content="link:" ToolTip="Trouve des pages qui pointent vers une URL spécifique." />
+                    <ComboBoxItem Content="related:" ToolTip="Affiche des sites similaires à une URL donnée." />
+                    <ComboBoxItem Content="info:" ToolTip="Fournit des informations sur une page Web." />
+                    <ComboBoxItem Content="source:" ToolTip="Trouve des pages qui sont sources de l'URL spécifiée." />
+                    <ComboBoxItem Content="@" ToolTip="Recherche de mentions sur les réseaux sociaux." />
+                    <ComboBoxItem Content="#" ToolTip="Recherche de hashtags sur les réseaux sociaux." />
+                    <ComboBoxItem Content="from:" ToolTip="Recherche de publications d'un utilisateur spécifique." />
+                    <ComboBoxItem Content="define:" ToolTip="Affiche la définition d'un mot ou d'une phrase." />
+                    <ComboBoxItem Content="cache:" ToolTip="Affiche la version en cache d'une page." />
+                    <ComboBoxItem Content="weather:" ToolTip="Affiche la météo pour une région spécifique." />
+                    <ComboBoxItem Content="stocks:" ToolTip="Affiche des informations boursières." />
+                    <ComboBoxItem Content="movie:" ToolTip="Affiche des informations sur un film." />
+                    <ComboBoxItem Content="book:" ToolTip="Affiche des informations sur un livre." />
+
+                </ComboBox>
+
+                <Button Margin="10,0,5,0"  Content=" Add " HorizontalAlignment="Right" Grid.Column="2" Click="AddNewDorkParam"/>
+
+                <Grid x:Name="dorkParamsBar" Grid.Column="1"/>
+
+            </Grid>
+
+
+            <Grid DockPanel.Dock="Bottom">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Margin="0,0,5,0" Text="Ouput :"/>
+
+                <TextBox x:Name="outputArea" Grid.Column="1" Margin="0,0,5,0" IsReadOnly="True" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+
+                <Button Grid.Column="2" Margin="0,0,5,0" Content="Copy" Click="CopyIntoClipBoard"/>
+
+                <Button Grid.Column="3" Content="Open in Web" Click="OpenInBrowser"/>
+
+            </Grid>
+
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Orientation="Vertical" Margin="0, 8, 0, 8" x:Name="dorksListActive">
+
+                    <DockPanel LastChildFill="True" Margin="5">
+
+                        <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" Width="75" Text="Dorks" Margin="5, 0, 5,0" Padding="5"/>
+                        <Separator DockPanel.Dock="Left" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+
+                        <TextBlock DockPanel.Dock="Right" Text="Remove" Margin="5,0,5,0" Padding="5"/>
+                        <Separator DockPanel.Dock="Right" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" Text="Colonne"/>
+
+                    </DockPanel>
+
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+
+                </StackPanel>
+            </ScrollViewer>
+
+        </DockPanel>
+
+    </Grid>
+
+</Window>
