@@ -3,7 +3,7 @@
     /// <summary>
     /// Enumeration representing the dorks (list) usable by the application.
     /// </summary>
-    internal enum DorksList
+    public enum DorksList : byte
     {
         @site,
         @intitle,
