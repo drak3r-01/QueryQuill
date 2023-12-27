@@ -91,11 +91,20 @@ the [GitHub Fork & Pull Request Workflow](https://gist.github.com/Chaser324/ce05
 - Improved user interface (Fluent Design)
 - Enhancements the dork generator
 - Implementation with MAUI
+- Implement multi-language to WPF app
+- Backup system
+- Update and verification of the parameter dictionary's indexes.
+- Complete How to Use section into README.md
 
 ## Changelog 📜
+
+### V 1.0
+
+- Initial release serving as the foundation for the project.
+- Creation of both the WPF application and console versions of QueryQuill relying on the same codebase.
 
 ## License 📄
 
 <p>
-    <a property="dct:title" rel="cc:attributionURL" href="https://github.com/drak3r-01/WebCrawl-Wizard">QueryQuill</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/drak3r-01">drak3r-01</a> is licensed under the <a href="https://opensource.org/licenses/MIT" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">MIT License</a>.
+    <a property="dct:title" rel="cc:attributionURL" href="https://github.com/drak3r-01/QueryQuill">QueryQuill</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/drak3r-01">drak3r-01</a> is licensed under the <a href="https://opensource.org/licenses/MIT" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">MIT License</a>.
 </p>
